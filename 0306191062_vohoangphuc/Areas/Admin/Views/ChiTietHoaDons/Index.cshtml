@@ -1,0 +1,60 @@
+﻿@model IEnumerable<_0306191062_vohoangphuc.Areas.Admin.Models.ChiTietHoaDon>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HoaDon)
+            </th>
+            <th>
+                Tên sản phẩm
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SanPham)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoLuong)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DonGia)
+            </th>
+            <th>
+                Thành tiền
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoaDon.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SanPham.TenSanPham)
+            </td>
+            <td>
+                <img src="~/admin/assets/images/sanphams/@item.SanPham.HinhAnh" style="width: 200px; height: 200px;" alt="image" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuong)
+            </td>
+            <td>
+                @item.DonGia.ToString("#,##0") VND
+            </td>
+            <td>
+                @((item.SoLuong * item.DonGia).ToString("#,##0")) VND
+            </td>
+        </tr>
+}
+    </tbody>
+    <tfoot>
+        <tr><h3>Tổng tiền:</h3></tr>
+        <tr><h3>@ViewBag.Total.ToString("#,##0") VND</h3></tr>
+    </tfoot>
+</table>

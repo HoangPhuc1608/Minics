@@ -1,0 +1,144 @@
+﻿@model IEnumerable<_0306191062_vohoangphuc.Areas.Admin.Models.GioHang>
+
+@{
+    ViewData["Title"] = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    long total = 0;
+}
+
+@section css{
+
+
+    <link href="~/pagecopy/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/pagecopy/css/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/pagecopy/css/slick.css" rel="stylesheet" />
+    <link href="~/pagecopy/css/magnific-popup.css" rel="stylesheet" />
+    <link href="~/pagecopy/css/font.awesome.css" rel="stylesheet" />
+    <link href="~/pagecopy/css/animate.css" rel="stylesheet" />
+    <link href="~/pagecopy/css/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/pagecopy/css/slinky.menu.css" rel="stylesheet" />
+    <link href="~/pagecopy/css/plugins.css" rel="stylesheet" />s
+    <link href="~/pagecopy/css/style.css" rel="stylesheet" />
+}
+<!--breadcrumbs area start-->
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <h3>Cart</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--breadcrumbs area end-->
+<!--shopping cart area start -->
+<div class="shopping_cart_area mt-100">
+    <div class="container">        
+            <div class="row">
+                <div class="col-12">
+                    <div class="table_desc">
+                        <div class="cart_page table-responsive">
+                            <table>
+                                @if (Model.Count() == 0)
+                                {
+                                    <tbody>
+                                        <tr>
+                                            <p class="text-center" style="color:orangered;">Không có sản phẩm nào trong giỏ hàng</p>
+                                        </tr>
+                                    </tbody>
+                                }
+                                else
+                                {
+                                <thead>
+                                    <tr>
+                                        <th class="product_remove">Delete</th>
+                                        <th class="product_thumb">Image</th>
+                                        <th class="product_name">Product</th>
+                                        <th class="product-price">Price</th>
+                                        <th class="product_quantity">Quantity</th>
+                                        <th class="product_total">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td class="product_remove">
+                                                <a asp-controller="Carts" asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash-o"></i></a>
+                                            </td>
+                                            
+                                            <td class="product_thumb">
+                                                <a href="#">
+                                                    <img src="~/admin/assets/images/sanphams/@Html.DisplayFor(modelItem => item.SanPham.HinhAnh)" alt="">
+                                                </a>
+                                            </td>
+                                            <td class="product_name"><a href="#">@Html.DisplayFor(modelItem => item.SanPham.TenSanPham)</a></td>
+                                            <td class="product-price">@{var a = string.Format("{0:#,##0} ₫", item.SanPham.Gia);} @a</td>
+                                            <td class="product_quantity">
+                                                <form asp-action="Edit" method="post">
+                                                    <input type="text" name="SanPhamId"  hidden value="@Html.DisplayFor(modelItem => item.SanPham.Id)" />
+                                                    <label>Quantity</label> <input min="1" onchange="this.form.submit()" max="100" value="@Html.DisplayFor(modelItem => item.SoLuong)" type="number" name="SoLuong">
+                                                </form>
+                                                
+                                            </td>
+                                            
+                                            <td class="product_total" >@{var b = string.Format("{0:#,##0} ₫", item.SanPham.Gia * item.SoLuong);} @b</td>
+
+                                        </tr>
+                                                    total += item.SanPham.Gia * item.SoLuong;
+                                                    var c = string.Format("{0:#,##0} ₫", total);
+                                      }
+                                </tbody>
+                                }
+                            </table>
+                        </div>
+                        @*<div class="cart_submit">
+                            <button type="submit">update cart</button>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+            <!--coupon code area start-->
+            <div class="coupon_area">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="coupon_code right">
+                            <h3>Tổng cộng</h3>
+                            <div class="coupon_inner">                            
+                                <div class="cart_subtotal">
+                                    <p>Total</p>
+                                    <p class="cart_amount" > @{var d = string.Format("{0:#,##0} ₫", total); } @d @{ViewBag.Total = total;}</p>
+                                </div>
+                                <div class="checkout_btn">
+                                    <a   asp-action="Pay">Đặt hàng</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--coupon code area end-->
+       
+    </div>
+</div>
+<!--shopping cart area end -->
+@section js{
+    <script src="~/pagecopy/js/vendor/jquery-3.4.1.min.js"></script>
+    <script src="~/pagecopy/js/popper.js"></script>
+    <script src="~/pagecopy/js/bootstrap.min.js"></script>
+    <script src="~/pagecopy/js/owl.carousel.min.js"></script>
+    <script src="~/pagecopy/js/slick.min.js"></script>
+    <script src="~/pagecopy/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/pagecopy/js/jquery.counterup.min.js"></script>
+    <script src="~/pagecopy/js/jquery.countdown.js"></script>
+    <script src="~/pagecopy/js/jquery.ui.js"></script>
+    <script src="~/pagecopy/js/jquery.elevatezoom.js"></script>
+    <script src="~/pagecopy/js/isotope.pkgd.min.js"></script>
+    <script src="~/pagecopy/js/slinky.menu.js"></script>
+    <script src="~/pagecopy/js/plugins.js"></script>
+    <script src="~/pagecopy/js/main.js"></script>
+}

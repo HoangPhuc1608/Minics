@@ -1,0 +1,141 @@
+﻿@model IEnumerable<_0306191062_vohoangphuc.Areas.Admin.Models.HoaDon>
+
+@{
+    ViewData["Title"] = "DanhSachDonHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <aside class="col-lg-2">
+        <!-- COMPONENT MENU LIST -->
+        <div class="card p-3 h-100">
+            <nav class="nav flex-column nav-pills">
+                <a class="nav-link " asp-action="Index">Thông tin cá nhân</a>
+                <a class="nav-link active" asp-action="DanhSachDonHang">Lịch sử mua hàng</a>
+            </nav>
+        </div>
+        <!-- COMPONENT MENU LIST END .// -->
+    </aside> <div class="col-lg-10">
+        <article class="card">
+            <div class="card-body">
+                <form asp-action="#" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    @*<input type="hidden" asp-for="Id" />*@
+                    <div class="row">
+                        <table class="table">
+                            @if (Model.Count() == 0)
+                            {
+                            <tbody>
+                                <tr>
+                                    <h2 class="text-center" style="color:orangered;">Tạm thời chưa có đơn hàng!</h2>
+                                </tr>
+                            </tbody>                                
+                            }
+                            else
+                            {
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.NgayTaoHoaDon)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.TenNguoiNhanHang)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.DiaChiGiaoHang)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.SoDienThoai)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.TongTien)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.TenNguoiGiaoHang)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.SDTNguoiGiao)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.TrangThai)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.NgayTaoHoaDon)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TenNguoiNhanHang)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DiaChiGiaoHang)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.SoDienThoai)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TongTien)
+                                            </td>
+                                            @if (item.TrangThai > 2)
+                                            {
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TenNguoiGiaoHang)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.SDTNguoiGiao)
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td></td>
+                                                <td></td>
+                                            }
+                                        <td>
+                                            @if (item.TrangThai == 0)
+                                            {
+                                                <b class="btn btn-outline-danger btn-fw" style="width:120;">Chờ xác nhận</b>
+                                            }
+                                            else if (item.TrangThai == 1)
+                                            {
+                                                <b class="btn btn-outline-primary btn-fw" style="width: 120;">Đã xác nhận</b>
+                                            }
+                                            else if (item.TrangThai == 2)
+                                            {
+                                                <b class="btn btn-outline-info btn-fw" style="width: 120;">Đang chuẩn bị hàng</b>
+                                            }
+                                            else if (item.TrangThai == 3)
+                                            {
+                                                <b class="btn btn-outline-warning btn-fw" style="width: 120;">Đang giao</b>
+                                            }
+                                            else if (item.TrangThai == 4)
+                                            {
+                                                <b class="btn btn-outline-success btn-fw" style="width: 120;">Giao thành công</b>
+                                            }
+                                        </td>
+                                            <td>
+                                                @if (item.TrangThai == 0)
+                                                {
+                                                    <a class="btn btn-danger btn-rounded" style="width:90;" asp-action="HuyDon" asp-route-id="@item.Id">Hủy đơn</a>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                    
+                                </tbody>
+                            }
+                            </table>
+                            
+                    </div> <!-- row.// --> <br>                   
+                </form> <hr class="my-4">
+        </article>
+    </div>
+</div>
+</div>
+</article>
+</div></div>
+

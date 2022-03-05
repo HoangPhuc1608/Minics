@@ -1,0 +1,39 @@
+﻿@model _0306191062_vohoangphuc.Areas.Admin.Models.HoaDon
+
+@{
+    var taikhoan = ViewBag.account;
+    var hovaten = taikhoan.HoVaTen;
+    var diachi = taikhoan.DiaChi;
+    var sdt = taikhoan.SDT;
+    var tongtien = ViewBag.Total;
+}
+
+<h4 style="padding-left: 100px">Xác nhận đơn hàng</h4>
+<hr />
+<div class="row" style="padding-left: 100px">
+    <div class="col-md-4">
+        <form asp-action="Pay">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TenNguoiNhanHang" class="control-label"></label>
+                <input asp-for="TenNguoiNhanHang" class="form-control" value="@hovaten" />
+                <span asp-validation-for="TenNguoiNhanHang" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DiaChiGiaoHang" class="control-label"></label>
+                <input asp-for="DiaChiGiaoHang" class="form-control" value="@diachi" />
+                <span asp-validation-for="DiaChiGiaoHang" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SoDienThoai" class="control-label"></label>
+                <input asp-for="SoDienThoai" class="form-control" value="@sdt" />
+                <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+            </div>
+           
+            <div class="pb-3"><h4>Tổng tiền:@ViewBag.Total.ToString("#,##0") VND</h4></div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Xác Nhận</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,142 @@
+﻿
+@model _0306191062_vohoangphuc.Areas.Admin.Models.TaiKhoan
+@{
+    Layout = "";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Minics - Register</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/js/vendor_register/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/fonts_register/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/fonts_register/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/js/vendor_register/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/js/vendor_register/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/js/vendor_register/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/js/vendor_register/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/js/vendor_register/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/css/register_main.css">
+    <link rel="stylesheet" type="text/css" href="~/css/register_util.css">
+    <!--===============================================================================================-->
+</head>
+<body>
+
+    <div class="limiter">
+        <div class="container-login100" style="background-color: cornflowerblue">
+            <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+                <form class="login100-form validate-form"  asp-action="Register" enctype="multipart/form-data">
+                    <span class="login100-form-title p-b-49">
+                        Đăng ký tài khoản
+                    </span>
+
+                    <div class="wrap-input100 validate-input m-b-23" data-validate="Username is reauired">
+                        <label asp-for="TenNguoiDung" class="control-label label-input100"></label>
+                        @*<span asp-validation-for="TenNguoiDung" class="label-input100"></span>*@
+                        <input class="input100" type="text" asp-for="TenNguoiDung" placeholder="Tên đăng nhập">
+                    </div>
+
+                    <div style="margin-bottom: 30px;" class="wrap-input100 validate-input" data-validate="Password is required">
+                         <label asp-for="MatKhau" class="control-label label-input100"></label>
+                        <input class="input100" type="password" asp-for="MatKhau" placeholder="Mật khẩu">
+                        <!-- <span class="focus-input100" data-symbol="&#xf190;"></span> -->
+                    </div>
+
+                    <div style="margin-bottom: 30px;" class="wrap-input100 validate-input " data-validate="Username is reauired">
+                        <label asp-for="Email" class="control-label label-input100"></label>
+                        <input class="input100" type="email" asp-for="Email" placeholder="Email">
+                    </div>
+
+                    <div style="margin-bottom: 30px;" class="wrap-input100 validate-input m-b-23" data-validate="Username is reauired">
+                        <label asp-for="SDT" class="control-label label-input100"></label>
+                        <input class="input100" type="text" asp-for="SDT" placeholder="Số điện thoại">
+                    </div>
+
+                    <div style="margin-bottom: 30px;" class="wrap-input100 validate-input m-b-23" data-validate="Username is reauired">
+                        <label asp-for="DiaChi" class="control-label label-input100"></label>
+                        <input class="input100" type="text" asp-for="DiaChi" placeholder="Địa chỉ">
+                    </div>
+
+                    <div style="margin-bottom: 30px;" class="wrap-input100 validate-input m-b-23" data-validate="Username is reauired">
+                        <label asp-for="HoVaTen" class="control-label label-input100"></label>
+                        <input class="input100" type="text" asp-for="HoVaTen" placeholder="Họ và tên">
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ImageFile" class="control-label"></label>
+                        <input asp-for="ImageFile" class="form-control" />
+                        <input asp-for="HinhAnh" hidden value="abc.png" />
+                        <img id="imgPreview" style="width:200px;" />
+                        <span asp-validation-for="ImageFile" class="text-danger"></span>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <div class="wrap-login100-form-btn">
+                            <div class="login100-form-bgbtn"></div>
+                            <button class="login100-form-btn">
+                                Đăng ký
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="dropDownSelect1"></div>
+
+    <!--===============================================================================================-->
+    <script src="~/js/vendor_register/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/js/vendor_register/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/js/vendor_register/bootstrap/js/popper.js"></script>
+    <script src="~/js/vendor_register/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/js/vendor_register/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/js/vendor_register/daterangepicker/moment.min.js"></script>
+    <script src="~/js/vendor_register/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/js/vendor_register/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/js/register.js"></script>
+    <script>
+    $(document).ready(function () {
+        $("#ImageFile").on("change", function (e) {
+            var filePath = URL.createObjectURL(e.target.files[0]);
+            $("#imgPreview").show().attr("src",filePath);
+        })
+    });
+    </script>
+    @*@if (ViewBag.reFail == 1)
+    {
+        <script>alert("Username đã tồn tại");</script>
+    }
+    else if (ViewBag.reFail == 2)
+    {
+        <script>alert("Email đã tồn tại");</script>
+    }
+    else if (ViewBag.reFail == 3)
+    {
+        <script>alert("Phone đã tồn tại");</script>
+    }
+    else if (ViewBag.reFail == 0)
+    {
+        <script>alert("Đăng ký thành công");</script>
+    }*@
+</body>
+</html>

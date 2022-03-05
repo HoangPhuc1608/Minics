@@ -1,0 +1,174 @@
+﻿@model PagedList.IPagedList<_0306191062_vohoangphuc.Areas.Admin.Models.SanPham>
+@using PagedList.Mvc;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<!--@{
+    ViewData["Title"] = "Product";
+
+}-->
+<section class="padding-y bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <section class="product_section layout_padding">
+                    <div class="container">
+                        <div class="heading_container heading_center">
+                                @if (ViewBag.loaiActive != null)
+                                {
+                                    <h2>@ViewBag.loaiActive</h2>
+                                }
+                                else
+                                {
+                                    <h2>Tất cả sản phẩm</h2>
+                                }
+                        </div>
+
+                        <form action="" method="post">
+                            <div class="row">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                @foreach (var item in Model)
+                                {
+                                    <div class="col-sm-6 col-lg-4">
+                                        <div class="box">
+                                            <div class="img-box">
+                                                <img src="~/admin/assets/images/sanphams/@item.HinhAnh" alt="">
+
+                                                <a asp-controller="Products" asp-action="Detail" asp-route-id="@item.Id" class="add_cart_btn">
+                                                    <span>
+                                                        Xem chi tiết
+                                                    </span>
+                                                </a>
+
+
+                                            </div>
+                                            <div class="detail-box">
+                                                <h5>
+                                                    @item.TenSanPham
+                                                </h5>
+                                                <div class="product_info">
+                                                    <h6>
+                                                       <span>Giá: </span>  @{var a = string.Format("{0:#,##0} VND", item.Gia);} @a
+                                                    </h6>
+                                                    <input type="text" name="SoLuong" value="1" hidden />
+                                                    <input type="text" name="SanPhamId" value="@item.Id" hidden />
+                                                    @if (ViewBag.UserLogin != null)
+                                                    {
+                                                        var user = ViewBag.UserLogin;
+                                                        <input type="number" name="TaiKhoanId" value="@user.Id" hidden />
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                                           }
+                            </div>
+                        </form>
+                        @*Start: Phân trang*@
+                        <nav aria-label="Page navigation example">
+                           <ul class="pagination">
+                                @*<li class="page-item disabled">
+                                  <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                </li>*@    
+                               @for (int i = 0; i < Model.PageCount; i++)
+                               {
+                                   <li class="page-item @(Model.PageNumber == i + 1?"active":"")">
+                                      <a class="page-link" asp-action="Index" asp-route-page="@(i+1)" >@(i+1) <span class="sr-only">(current)</span></a>
+                                   </li> 
+                               }
+                                                               
+                                @*<li class="page-item">
+                                  <a class="page-link" href="#">Next</a>
+                                </li>*@
+                          </ul>
+                        </nav>
+                        @*End: Phân trang*@
+                    </div>
+                </section>
+            </div>
+            <!-- col.// -->
+            <aside class="col-lg-3 col-sm-6 d-none d-lg-block">
+                <!-- COMPONENTS SIDEBAR -->
+                <div class="card">
+                    
+                        <article class="filter-group">
+                            <header class="card-header">
+                                <a href="#" class="title" data-bs-toggle="collapse" data-bs-target="#collapse_aside1" aria-expanded="true"> <i class="icon-control fa fa-chevron-down"></i> Các dòng xe </a>
+                            </header>
+                            <div class="collapse show" id="collapse_aside1" style="">
+                                <div class="card-body">
+                                    <ul class="list-menu">
+                                        <li><a asp-action="ProTypeDetail" asp-route-id="0">Tất cả </a></li>
+                                        @foreach (var item in ViewBag.lstLoaiSP)
+                                        {
+                                            <li><a asp-action="ProTypeDetail" asp-route-id="@item.Id">@item.TenLoai </a></li>
+                                        }
+                                    </ul>
+                                    
+                                </div>
+                                <!-- card-body.// -->
+                                 
+                            </div>
+                           
+                        </article>
+                        <!-- filter-group // -->
+                        <form  asp-action="Index" method="get">
+                                <article class="filter-group">
+                                    <header class="card-header">
+                                        <a href="#" class="title" data-bs-toggle="collapse" data-bs-target="#collapse_aside2" aria-expanded="true"> <i class="icon-control fa fa-chevron-down"></i> Giá </a>
+                                    </header>
+                                    <div class="collapse show" id="collapse_aside2" style="">
+                                        <div class="card-body">
+                                        
+                                                <div class="row mb-3">
+                                                    <div class="col-6">
+                                                        <label class="form-label">Min</label>
+                                                        <input class="form-control" name="price_start" min="0" placeholder="0VND" type="number" />
+                                                    </div>
+
+                                                    <div class="col-6">
+                                                        <label class="form-label">Max</label>
+                                                        <input class="form-control" name="price_end" min="0" placeholder="1,0000VND" type="number" />
+                                                    </div>
+                                                </div>
+                                                <!-- row end.// -->
+                                                <button class="btn btn-light w-100" type="submit">Tìm</button>
+                                        
+                                    </div>
+                                        <!-- card-body.// -->
+                                    </div>
+                                </article>
+                        
+                            <!-- filter-group // -->
+                            <article class="filter-group">
+                                <header class="card-header">
+                                    <a href="#" class="title" data-bs-toggle="collapse" data-bs-target="#collapse_aside3" aria-expanded="true"> <i class="icon-control fa fa-chevron-down"></i> Cửa sổ trời </a>
+                                </header>
+                                <div class="collapse show" id="collapse_aside3" style="">
+                                    <div class="card-body">
+                                    
+                                            <label class="form-check mb-2"> <input class="form-check-input" onchange="this.form.submit()" type="radio" name="radio_check" value="1" /> <span class="form-check-label"> Có </span> </label>
+                                            <label class="form-check mb-2"> <input class="form-check-input" onchange="this.form.submit()" type="radio" name="radio_check" value="0" /> <span class="form-check-label"> Không </span> </label>
+
+                                    
+                                    </div>
+                                    <!-- card-body.// -->
+                                </div>
+                            </article>
+                        </form>
+                    
+                    
+                </div>
+                <!-- card.// --><!-- ============= COMPONENTS SIDEBAR END .// ============= -->
+            
+            </aside>
+        </div>
+        <!-- row.// -->
+        <br />
+        <br />
+       
+    </div>
+    <!-- container .// -->
+</section>

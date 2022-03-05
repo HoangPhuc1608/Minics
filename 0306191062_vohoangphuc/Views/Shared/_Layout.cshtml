@@ -1,0 +1,236 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Minics  @ViewData["Title"]</title>
+
+    @await Html.PartialAsync("_CSSPartial")
+    @RenderSection("css", required: false)
+</head>
+<body>
+    <div class="hero_area">
+        <!-- header section strats -->
+        <header class="header_section">
+            <div class="header_top">
+                <div class="container-fluid">
+                    <div class="top_nav_container">
+                        <div class="contact_nav">
+                            <a href="">
+                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                <span>
+                                    Call : +01 123455678990
+                                </span>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                <span>
+                                    Email : demo@gmail.com
+                                </span>
+                            </a>
+                        </div>
+                        <form asp-controller="Products" asp-action="Index" class="search_form">                            
+                            
+                                <input type="text" name="searchString" class="form-control" placeholder="Search here...">
+                                <button class="" type="submit">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </button>
+                            
+                        </form>
+                        <div class="user_option_box">
+                            @if (ViewBag.UserLogin != null)
+                            {
+                                var user = ViewBag.UserLogin;
+                                <a asp-controller="MyAccount" asp-action="Index" class="account-link">
+                                    <img src="~/admin/assets/images/users/@user.HinhAnh" width="40" alt="Alternate Text" />
+                                    <a asp-controller="Auth" asp-action="Logout"><i class="fa fa-sign-out mr-2" aria-hidden="true"></i>Đăng xuất</a>
+                                </a>
+                                <a asp-controller="Carts" asp-action="Index" class="cart-link">
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                    <span>
+                                        Cart
+                                    </span>
+                                </a>
+                            }
+                            else
+                            {
+                                <a asp-controller="Auth" asp-action="Login" class="account-link">
+                                    <i class="fa fa-sign-in" aria-hidden="true"></i>
+                                    <span>
+                                        Login
+                                    </span>
+                                </a>
+
+                            }
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="header_bottom">
+                <div class="container-fluid">
+                    <nav class="navbar navbar-expand-lg custom_nav-container ">
+                        <a class="navbar-brand" href="index.html">
+                            <span>
+                                Minics
+                            </span>
+                        </a>
+
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class=""> </span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ">
+                                <li class="nav-item @(ViewBag.ActiveNav ==1?"active": "")">
+                                    <a class="nav-link" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item @(ViewBag.ActiveNav ==2?"active": "")">
+                                    <a class="nav-link" asp-controller="About" asp-action="Index"> About</a>
+                                </li>
+                                <li class="nav-item @(ViewBag.ActiveNav ==3?"active": "")">
+                                    <a class="nav-link" asp-controller="Products" asp-action="Index">Products</a>
+                                </li>
+                                <li class="nav-item @(ViewBag.ActiveNav ==4?"active": "")">
+                                    <a class="nav-link" asp-controller="WhyUS" asp-action="Index">Why Us</a>
+                                </li>
+                                <li class="nav-item @(ViewBag.ActiveNav ==5?"active": "")">
+                                    <a class="nav-link" asp-controller="Testimonial" asp-action="Index">Testimonial</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <!-- end header section -->
+        @RenderBody()
+
+        <!-- info section -->
+        <section class="info_section ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="info_contact">
+                            <h5>
+                                <a href="" class="navbar-brand">
+                                    <span>
+                                        Minics
+                                    </span>
+                                </a>
+                            </h5>
+                            <p>
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                Address
+                            </p>
+                            <p>
+                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                +01 1234567890
+                            </p>
+                            <p>
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                demo@gmail.com
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="info_info">
+                            <h5>
+                                Information
+                            </h5>
+                            <p>
+                                Eligendi sunt, provident, debitis nemo, facilis cupiditate velit libero dolorum aperiam enim nulla iste maxime corrupti ad illo libero minus.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="info_links">
+                            <h5>
+                                Useful Link
+                            </h5>
+                            <ul>
+                                <li>
+                                    <a href="index.html">
+                                        Home
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="about.html">
+                                        About
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="product.html">
+                                        Products
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="why.html">
+                                        Why Us
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="testimonial.html">
+                                        Testimonial
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="info_form ">
+                            <h5>
+                                Nhận xét về chúng tôi
+                            </h5>                            
+                            <form asp-area="Admin" asp-controller="DanhGiaKhachHangs" asp-action="Create">
+                                @if (ViewBag.UserLogin != null)
+                                {
+                                    var user = ViewBag.UserLogin;                                    
+
+                                    <input name="loiDanhGia" type="text" placeholder="Nhập nhận xét">
+                                    <input name="taiKhoanId" value="@user.Id" type="text" hidden placeholder="Enter your email">
+
+                                    <button>
+                                        Submit
+                                    </button>
+                                }
+                            </form>
+                            <div class="social_box">
+                                <a href="">
+                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                </a>
+                                <a href="">
+                                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                                </a>
+                                <a href="">
+                                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                                </a>
+                                <a href="">
+                                    <i class="fa fa-youtube" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- end info_section -->
+        <!-- footer section -->
+        <footer class="footer_section">
+            <div class="container">
+                <p>
+                    &copy; <span id="displayYear"></span> All Rights Reserved By
+                    <a href="https://html.design/">Free Html Templates</a>
+                </p>
+            </div>
+        </footer>
+        <!-- footer section -->
+
+        @await Html.PartialAsync("_JSPartial")
+        @RenderSection("js", required: false)
+</body>
+</html>

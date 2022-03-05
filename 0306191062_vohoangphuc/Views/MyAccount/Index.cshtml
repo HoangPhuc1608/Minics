@@ -1,0 +1,200 @@
+﻿@model _0306191062_vohoangphuc.Areas.Admin.Models.TaiKhoan
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "My Account";
+    var Account = ViewBag.UserLogin;
+   
+
+}
+@section css{
+
+
+    <link href="~/pagecopy/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/pagecopy/css/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/pagecopy/css/slick.css" rel="stylesheet" />
+    <link href="~/pagecopy/css/magnific-popup.css" rel="stylesheet" />
+    <link href="~/pagecopy/css/font.awesome.css" rel="stylesheet" />
+    <link href="~/pagecopy/css/animate.css" rel="stylesheet" />
+    <link href="~/pagecopy/css/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/pagecopy/css/slinky.menu.css" rel="stylesheet" />
+    <link href="~/pagecopy/css/plugins.css" rel="stylesheet" />
+    <link href="~/pagecopy/css/style.css" rel="stylesheet" />
+}
+<!--<section class="main_content_area">
+    <div class="container">
+        <div class="col-6">
+            <h3>Thông tin cá nhân</h3>
+            <div class="login">
+                <div class="login_form_container">
+                    <div class="account_login_form">-->
+                        @*<form asp-area="Admin" asp-controller="TaiKhoans" asp-action="Edit" enctype="multipart/form-data">*@
+                        <!--<form asp-action="#" enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="Id" />
+                            <div class="form-group">
+                                <label asp-for="TenNguoiDung" class="control-label"></label>
+                                <input asp-for="TenNguoiDung" class="form-control" />
+                                <span asp-validation-for="TenNguoiDung" class="text-danger"></span>
+                            </div>
+                             <div class="form-group">
+                                <label asp-for="HoVaTen" class="control-label"></label>
+                                <input asp-for="HoVaTen" class="form-control" />
+                                <span asp-validation-for="HoVaTen" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="MatKhau" class="control-label"></label>
+                                <input asp-for="MatKhau"  class="form-control" />
+                                <span asp-validation-for="MatKhau" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Email" class="control-label"></label>
+                                <input asp-for="Email" type="email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SDT" class="control-label"></label>
+                                <input asp-for="SDT" class="form-control" />
+                                <span asp-validation-for="SDT" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DiaChi" class="control-label"></label>
+                                <input asp-for="DiaChi" class="form-control" />
+                                <span asp-validation-for="DiaChi" class="text-danger"></span>
+                            </div>
+                            <div class="form-group form-check" hidden>
+                                <label class="form-check-label">
+                                    <input class="form-check-input" value="false"  asp-for="IsAdmin" /> @Html.DisplayNameFor(model => model.IsAdmin)
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ImageFile" class="control-label"></label>
+                                <input asp-for="ImageFile" class="form-control" />
+                                <input type="hidden" asp-for="HinhAnh" />
+                                <img id="imgPreview" width="200px" src="~/admin/assets/images/users/@Model.HinhAnh" />
+                                <span asp-validation-for="HinhAnh" class="text-danger"></span>
+                            </div>
+                            <div class="form-group form-check" hidden>
+                                <label class="form-check-label">
+                                    <input class="form-check-input" value="false" asp-for="TrangThai" /> @Html.DisplayNameFor(model => model.TrangThai)
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Cập nhật" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>-->
+
+<div class="row"> 
+    <aside class="col-lg-2"> 
+    <!-- COMPONENT MENU LIST --> 
+    <div class="card p-3 h-100"> 
+        <nav class="nav flex-column nav-pills"> 
+        <a class="nav-link active" href="#">Thông tin cá nhân</a> 
+        <a class="nav-link" asp-action="DanhSachDonHang">Lịch sử mua hàng</a> 
+         </nav> 
+        </div> 
+    <!-- COMPONENT MENU LIST END .// --> 
+        </aside> <div class="col-lg-10"> 
+    <article class="card"> 
+    <div class="card-body"> 
+        <form asp-controller="TaiKhoans" asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+        <div class="row"> 
+            <div class="col-lg-8"> 
+            <div class="row gx-3"> 
+                  <div class="col-6 mb-3">
+                    <label asp-for="TenNguoiDung" class="control-label"></label>
+                    <input asp-for="TenNguoiDung" class="form-control" />
+                    <span asp-validation-for="TenNguoiDung" class="text-danger"></span>
+                </div>
+                <div class="col-6 mb-3">
+                    <label asp-for="HoVaTen" class="control-label"></label>
+                    <input asp-for="HoVaTen" class="form-control" />
+                    <span asp-validation-for="HoVaTen" class="text-danger"></span>
+                </div>
+                 <div class="col-6 mb-3">
+                    <label asp-for="MatKhau" class="control-label"></label>
+                    <input asp-for="MatKhau" class="form-control" />
+                    <span asp-validation-for="MatKhau" class="text-danger"></span>
+                </div>
+                 <div class="col-6 mb-3">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                 <div class="col-6 mb-3">
+                    <label asp-for="SDT" class="control-label"></label>
+                    <input asp-for="SDT" class="form-control" />
+                    <span asp-validation-for="SDT" class="text-danger"></span>
+                </div>
+                 <div class="form-group form-check" hidden>
+                    <label class="form-check-label">
+                        <input class="form-check-input"  asp-for="IsAdmin" /> @Html.DisplayNameFor(model => model.IsAdmin)
+                    </label>
+                </div>
+                 <div class="form-group form-check" hidden>
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="TrangThai" /> @Html.DisplayNameFor(model => model.TrangThai)
+                    </label>
+                </div>
+                <div class="col-lg-12 mb-3"> 
+                    <label asp-for="DiaChi" class="control-label"></label>
+                    <input asp-for="DiaChi" class="form-control" />
+                    <span asp-validation-for="DiaChi" class="text-danger"></span> 
+                </div> <!-- col .// -->                 
+            </div> <!-- row.// --> </div> <!-- col.// --> 
+            <aside class="col-lg-4"> 
+            <div class="text-lg-center mt-3"> 
+                <img class="img-lg mb-3 img-avatar" id="imgPreview" src="~/admin/assets/images/users/@Model.HinhAnh" alt="User Photo"> 
+            <div> 
+               <div class="form-group">
+                    <label asp-for="ImageFile" hidden class="control-label"></label>
+                    <input asp-for="ImageFile" class="form-control" />
+                    <input type="hidden" asp-for="HinhAnh" />
+                    @*<img id="imgPreview" width="200px" src="~/admin/assets/images/users/@Model.HinhAnh" />*@
+                    <span asp-validation-for="HinhAnh" class="text-danger"></span>
+                </div>
+
+                </div> 
+                </div> </aside> <!-- col.// --> </div> <!-- row.// --> <br> 
+        <button class="btn btn-primary" type="submit">Cập nhật</button> </form> <hr class="my-4"> 
+       </article> 
+       </div>
+    </div> 
+</div> 
+</article> 
+</div></div>
+
+@section js{
+    <script src="~/pagecopy/js/vendor/jquery-3.4.1.min.js"></script>
+    <script src="~/pagecopy/js/popper.js"></script>
+    <script src="~/pagecopy/js/bootstrap.min.js"></script>
+    <script src="~/pagecopy/js/owl.carousel.min.js"></script>
+    <script src="~/pagecopy/js/slick.min.js"></script>
+    <script src="~/pagecopy/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/pagecopy/js/jquery.counterup.min.js"></script>
+    <script src="~/pagecopy/js/jquery.countdown.js"></script>
+    <script src="~/pagecopy/js/jquery.ui.js"></script>
+    <script src="~/pagecopy/js/jquery.elevatezoom.js"></script>
+    <script src="~/pagecopy/js/isotope.pkgd.min.js"></script>
+    <script src="~/pagecopy/js/slinky.menu.js"></script>
+    <script src="~/pagecopy/js/plugins.js"></script>
+    <script src="~/pagecopy/js/main.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#ImageFile").on("change", function (e) {
+            var filePath = URL.createObjectURL(e.target.files[0]);
+            $("#imgPreview").show().attr("src",filePath);
+        })
+    });
+</script>
+}

@@ -1,0 +1,91 @@
+﻿@model _0306191062_vohoangphuc.Areas.Admin.Models.SanPham
+
+@{
+    ViewData["Title"] = "Chi Tiết Sản Phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>SanPham</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TenSanPham)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TenSanPham)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CongSuat)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CongSuat) kW
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TocDoTangToc)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TocDoTangToc) 
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DongCo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DongCo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MauNoiThat)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MauNoiThat)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CuaSoTroi)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CuaSoTroi)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MoTa)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MoTa)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Gia)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Gia)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SoLuongTon)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SoLuongTon)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LoaiSanPham)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LoaiSanPham.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HinhAnh)
+        </dt>
+        <dd class="col-sm-10">
+            <img width="200px;" src="~/admin/assets/images/sanphams/@Html.DisplayFor(model => model.HinhAnh)" alt="No Image" />
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TrangThai)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TrangThai)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

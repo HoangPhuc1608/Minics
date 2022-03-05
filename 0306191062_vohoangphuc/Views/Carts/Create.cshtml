@@ -1,0 +1,64 @@
+﻿@model _0306191062_vohoangphuc.Areas.Admin.Models.HoaDon
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "";
+    var user = ViewBag.userDatHang;
+    var c = "aa";
+}
+
+
+
+<section class="main_content_area">
+    <div class="container">
+        <div class="col-6">
+            <h3>Xác nhận đơn hàng </h3>
+            <div class="login">
+                <div class="login_form_container">
+                    <div class="account_login_form">
+                        <form asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group" hidden>
+                                <label asp-for="TaiKhoanId" class="control-label"></label>
+                                <select asp-for="TaiKhoanId" class="form-control" asp-items="ViewBag.TaiKhoanId"></select>
+                            </div>
+                            <div class="form-group" hidden>
+                                <label asp-for="NgayTaoHoaDon" class="control-label"></label>
+                                <input asp-for="NgayTaoHoaDon" class="form-control" />
+                                <span asp-validation-for="NgayTaoHoaDon" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label  class="control-label"></label>Tên người nhận
+                                <input value="@user.HoVaTen" name="tennguoinhan" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DiaChiGiaoHang" class="control-label"></label>
+                                <input asp-for="DiaChiGiaoHang" value="@user.DiaChi" name="DiaChiGiaoHang" class="form-control" />
+                                <span asp-validation-for="DiaChiGiaoHang" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SoDienThoai" class="control-label"></label>
+                                <input asp-for="SoDienThoai" value="@user.SDT" name="SoDienThoai" class="form-control" />
+                                <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="TongTien" class="control-label"></label>
+                                <input readonly asp-for="TongTien" class="form-control" />
+                                <span asp-validation-for="TongTien" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label hidden asp-for="TrangThai" class="control-label"></label>
+                                <input hidden asp-for="TrangThai" class="form-control" />
+                                <span asp-validation-for="TrangThai" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Tiến hành đặt hàng" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,172 @@
+﻿@model IEnumerable<_0306191062_vohoangphuc.Areas.Admin.Models.HoaDon>
+
+@{
+    ViewData["Title"] = "ThongKeHDTheoNgay";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
+    //var lstSPBanChay = ViewBag.lstSPBanChay;    
+    
+   
+}
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row ">
+            <div class="col-12 grid-margin">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Thống kê hóa đơn theo ngày</h4>
+                        <form asp-action="ThongKe" class="d-flex m-2">
+                            <button name="all" value="all" class="btn btn-primary">Xem tất cả</button>
+                            <input class="form-control text-light m-1 w-25" type="date" name="startD" />
+                            <input class="form-control text-light m-1 w-25" type="date" name="endD" />
+                            <button class="btn btn-primary" type="submit"> Tìm</button>
+                        </form>
+                        <div class="table-responsive">
+                            @*<table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.TaiKhoan)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.NgayTaoHoaDon)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.TenNguoiNhanHang)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.DiaChiGiaoHang)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.SoDienThoai)
+                                        </th>
+
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.TrangThai)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.TenNguoiGiaoHang)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.SDTNguoiGiao)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.TongTien)
+                                        </th>
+                                    </tr>
+                                </thead>
+                                @if (Model.Count() == 0 || Model == null)
+                                {
+                                    <tbody></tbody>
+                                }
+                                else
+                                {
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TaiKhoan.HoVaTen)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.NgayTaoHoaDon)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TenNguoiNhanHang)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.DiaChiGiaoHang)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.SoDienThoai)
+                                                </td>
+                                                <td>
+                                                    @if (item.TrangThai == 0)
+                                                    {
+                                                        <b class="btn btn-outline-danger btn-fw" style="width:120;">Chờ xác nhận</b>
+                                                    }
+                                                    else if (item.TrangThai == 1)
+                                                    {
+                                                        <b class="btn btn-outline-primary btn-fw" style="width: 120;">Đã xác nhận</b>
+                                                    }
+                                                    else if (item.TrangThai == 2)
+                                                    {
+                                                        <b class="btn btn-outline-info btn-fw" style="width: 120;">Đang chuẩn bị hàng</b>
+                                                    }
+                                                    else if (item.TrangThai == 3)
+                                                    {
+                                                        <b class="btn btn-outline-warning btn-fw" style="width: 120;">Đang giao</b>
+                                                    }
+                                                    else if (item.TrangThai == 4)
+                                                    {
+                                                        <b class="btn btn-outline-success btn-fw" style="width: 120;">Giao thành công</b>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TenNguoiGiaoHang)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.SDTNguoiGiao)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TongTien)
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                }
+                            </table>*@
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            IdSP
+                                        </th>
+                                        <th>
+                                           Tên sản phẩm
+                                        </th>
+                                        <th>
+                                            Số lượng
+                                        </th>
+                                        <th>
+                                            Tổng tiền
+                                        </th>                                      
+                                    </tr>
+                                </thead>                               
+                                    <tbody>                                    
+                                    @foreach (var item in ViewBag.lstSPBanChay)
+                                        {
+                                        <tr>
+                                            <td>
+                                                @item.IdSanPham
+                                            </td>
+                                            <td>
+                                                @item.TenSanPham
+                                            </td>
+                                                <td>
+                                                @item.SoLuong
+                                            </td>
+                                                <td>
+                                                @item.Total
+                                            </td>                                               
+                                        </tr>
+                                     }
+                                    </tbody>                                
+                            </table>
+                        </div>
+                        <div class="d-flex justify-content-end mt-2">
+                            @*<span class="btn btn-primary">Tổng tiền: @ViewBag.total.ToString("#,##0") VND</span>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                            @*<span class="btn btn-primary">Tổng tiền: @{var total1 = string.Format("{0:#,##0} ₫", ViewBag.total1);} @total1</span>*@
+                        <!--</div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+    </div>
+</div>

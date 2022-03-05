@@ -1,0 +1,62 @@
+﻿@model IEnumerable<_0306191062_vohoangphuc.Areas.Admin.Models.ChiTietHoaDon>
+
+@{
+    ViewData["Title"] = "ThongKeTopSP";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>ThongKeTopSP</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HoaDon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SanPham)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoLuong)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DonGia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrangThai)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in ViewBag.lstCTHD) {
+        <tr>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.HoaDon.DiaChiGiaoHang)*@
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.SanPham.Id)*@
+                @item.SanPham.TenSanPham
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.SoLuong)*@
+                @item.SoLuong
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.DonGia)*@
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.TrangThai)*@
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

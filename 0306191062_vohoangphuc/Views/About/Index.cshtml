@@ -1,0 +1,93 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "About";
+}
+<!-- about section -->
+
+
+<section class="about_section">
+    <div class="container-fluid  ">
+        @if (ViewBag.countAbout < 2)
+        {
+            foreach (var item in ViewBag.aboutUS)
+            {
+                <div class="row">
+                    <div class="col-md-5 ml-auto">
+                        <div class="detail-box pr-md-3">
+                            <div class="heading_container">
+                                <h2>
+                                    @item.TieuDe
+                                </h2>
+                            </div>
+                            <p>
+                                @item.MoTa
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 px-0">
+                        <div class="img-box">
+                            <img width="200px;" src="~/admin/assets/images/about/@item.HinhAnh" alt="">
+                        </div>
+                    </div>
+                </div>
+            }
+
+        }
+        else
+        {
+            foreach (var item in ViewBag.aboutUS)
+            {
+                <div class="row">
+                    @if (item.Id % 2 == 0)
+                    {
+                        <div class="col-md-5 ml-auto">
+                            <div class="detail-box pr-md-3">
+                                <div class="heading_container">
+                                    <h2>
+                                        @item.TieuDe
+                                    </h2>
+                                </div>
+                                <p>
+                                    @item.MoTa
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 px-0">
+                            <div class="img-box">
+                                <img width="200px;" src="~/admin/assets/images/about/@item.HinhAnh" alt="">
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-6 px-0">
+                            <div class="img-box">
+                                <img width="200px;" src="~/admin/assets/images/about/@item.HinhAnh" alt="">
+                            </div>
+                        </div>
+                        <div class="col-md-5 ml-auto">
+                            <div class="detail-box pr-md-3">
+                                <div class="heading_container">
+                                    <h2>
+                                        @item.TieuDe
+                                    </h2>
+                                </div>
+                                <p>
+                                    @item.MoTa
+                                </p>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                <br />
+            }
+        }
+    </div>
+</section>
+
+
+
+<!-- end about section -->

@@ -1,0 +1,96 @@
+﻿@*@model PagedList.IPagedList<_0306191062_vohoangphuc.Areas.Admin.Models.LoaiSanPham>*@
+@model _0306191062_vohoangphuc.Areas.Admin.Models.LoaiSanPham
+@using PagedList.Mvc;
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h3>Create</h3>
+<div class="row">
+    <div class="col-lg-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label"></label>Tên loại
+                <input name="TenLoai" class="form-control" />
+                @*<span asp-validation-for="TenLoai" class="text-danger"></span>*@
+            </div>
+            @*<div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" hidden  checked asp-for="TrangThai" /> @Html.DisplayNameFor(model => model.TrangThai)
+                    </label>
+                </div>*@
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+<h3>Edit</h3>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="TenLoai" class="control-label"></label>
+                <input asp-for="TenLoai" class="form-control" />
+                <span asp-validation-for="TenLoai" class="text-danger"></span>
+            </div>
+<div class="form-group form-check" hidden>
+        <label class="form-check-label" hidden>
+            <input class="form-check-input" asp-for="TrangThai" hidden /> @Html.DisplayNameFor(model => model.TrangThai)
+        </label>
+    </div>
+<div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Danh sách Loại Sản Phẩm</h4>
+            @*<p class="card-description">
+                    <a class="btn btn-danger btn-rounded btn-fw" asp-action="Create">Thêm Loại Sản Phẩm</a>
+                </p>*@
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th style="color:white;">
+                                @*@Html.DisplayNameFor(model => model.TenLoai)*@
+                                Tên loại sản phẩm
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.lstLoaiSP)
+                        {
+                        <tr>
+                            <td>
+                                @*@Html.DisplayFor(modelItem => item.TenLoai)*@
+                                <p style="color:white;">@item.TenLoai</p>
+                            </td>
+                            <td>
+                                @*@Html.DisplayFor(modelItem => item.TenLoai)*@
+                                <p style="color:white;">@item.TenLoai</p>
+                            </td>
+                            <td>
+                                <a class="btn btn-success btn-rounded" style="width:90;" asp-action="Index" asp-route-id="@item.Id">Edit</a>
+                                @*<a class="btn btn-info btn-rounded" style="width:90;" asp-action="Details" asp-route-id="@item.Id">Details</a>*@
+                                <a class="btn btn-danger btn-rounded" style="width:90;" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

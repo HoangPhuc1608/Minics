@@ -1,0 +1,354 @@
+﻿@{
+    ViewData["Title"] = "";
+    
+}
+
+<!-- slider section -->
+<section class="slider_section ">
+    <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            @*@if(ViewBag.countSlide > 1)
+            {*@
+                @foreach (var item in ViewBag.lstSlide)
+                {
+                    
+                <div class="carousel-item @(ViewBag.IdActive == item.Id?"active":"")">
+                    <div class="container ">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="detail-box">
+                                    <h1>
+                                        @item.TieuDe
+                                    </h1>
+                                    <p>
+                                        @item.MoTa
+                                    </p>
+                                    <a href="">
+                                        Read More
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="img-box">
+                                    <img src="~/admin/assets/images/slideshows/@item.HinhAnh" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                }
+            @*}*@
+             @*else
+            {
+                 @foreach (var item in ViewBag.lstSlide)
+                 {
+                    <div class="carousel-item active">
+                        <div class="container ">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="detail-box">
+                                        <h1>
+                                            @item.TieuDe
+                                        </h1>
+                                        <p>
+                                            @item.MoTa
+                                        </p>
+                                        <a href="">
+                                            Read More
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="img-box">
+                                        <img src="~/admin/assets/images/slideshows/@item.HinhAnh" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }*@
+            
+            
+        </div>
+        <div class="carousel_btn_box">
+            <a class="carousel-control-prev" href="#customCarousel1" role="button" data-slide="prev">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#customCarousel1" role="button" data-slide="next">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</section>
+</div>
+<!-- end slider section -->
+
+
+<section class="product_section layout_padding">
+    <div class="container">
+        <div class="heading_container heading_center">
+            <h2>
+                Sản phẩm mới nhất
+            </h2>
+        </div>
+        <div class="row">
+            @foreach (var item in ViewBag.lstSPIndex)
+            {
+                
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="box">
+                            <div class="img-box">
+                                <img src="~/admin/assets/images/sanphams/@item.HinhAnh" alt="">
+                               <a asp-controller="Products" asp-action="Detail" asp-route-id="@item.Id" class="add_cart_btn">
+                                                <span>
+                                                    Xem chi tiết
+                                                </span>
+                                            </a>
+                            </div>
+                            <div class="detail-box">
+                                <h5>
+                                   <a asp-controller="Products" asp-action="Detail" asp-route-id="@item.Id">@item.TenSanPham</a> 
+                                </h5>
+                                <div class="product_info">
+                                    <h5>
+                                         @{var a = string.Format("{0:#,##0} VND", item.Gia);} @a<span> </span> 
+                                    </h5>
+                                    @*<div class="star_container">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </div>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                             }
+        </div>
+        <div class="btn_box">
+            <a asp-controller="Products" asp-action="Index" class="view_more-link">
+                View More
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<!-- about section -->
+
+<section class="about_section">
+    <div class="container-fluid  ">
+        @if (ViewBag.countAbout < 2)
+        {
+            foreach (var item in ViewBag.aboutUS)
+            {
+                <div class="row">
+                <div class="col-md-5 ml-auto">
+                    <div class="detail-box pr-md-3">
+                        <div class="heading_container">
+                            <h2>
+                                @item.TieuDe
+                            </h2>
+                        </div>
+                        <p>
+                            @item.MoTa
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 px-0">
+                    <div class="img-box">
+                        <img width="200px;" src="~/admin/assets/images/about/@item.HinhAnh" alt="">
+                    </div>
+                </div>
+            </div>
+            }
+                 
+        }
+        else
+        {
+        foreach (var item in ViewBag.aboutUS)
+            {
+                <div class="row">
+                    @if(item.Id % 2 == 0)
+                    {
+                        <div class="col-md-5 ml-auto">
+                    <div class="detail-box pr-md-3">
+                        <div class="heading_container">
+                            <h2>
+                                @item.TieuDe
+                            </h2>
+                        </div>
+                        <p>
+                            @item.MoTa
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 px-0">
+                    <div class="img-box">
+                        <img width="200px;" src="~/admin/assets/images/about/@item.HinhAnh" alt="">
+                    </div>
+                </div>
+                    }
+                    else
+                    {
+                         <div class="col-md-6 px-0">
+                            <div class="img-box">
+                                <img width="200px;" src="~/admin/assets/images/about/@item.HinhAnh" alt="">
+                            </div>
+                        </div>
+                        <div class="col-md-5 ml-auto">
+                            <div class="detail-box pr-md-3">
+                                <div class="heading_container">
+                                    <h2>
+                                        @item.TieuDe
+                                    </h2>
+                                </div>
+                                <p>
+                                    @item.MoTa
+                                </p>
+                            </div>
+                        </div>               
+                    }
+                
+            </div>
+            <br />
+            }
+        }
+    </div>
+</section>
+
+<!-- end about section -->
+<!-- why us section -->
+
+<section class="why_us_section layout_padding">
+    <div class="container">
+        <div class="heading_container heading_center">
+            <h2>
+                Why Choose Us
+            </h2>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="box ">
+                    <div class="img-box">
+                        <img src="images/w1.png" alt="">
+                    </div>
+                    <div class="detail-box">
+                        <h5>
+                            Fast Delivery
+                        </h5>
+                        <p>
+                            variations of passages of Lorem Ipsum available
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="box ">
+                    <div class="img-box">
+                        <img src="images/w2.png" alt="">
+                    </div>
+                    <div class="detail-box">
+                        <h5>
+                            Free Shiping
+                        </h5>
+                        <p>
+                            variations of passages of Lorem Ipsum available
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="box ">
+                    <div class="img-box">
+                        <img src="images/w3.png" alt="">
+                    </div>
+                    <div class="detail-box">
+                        <h5>
+                            Best Quality
+                        </h5>
+                        <p>
+                            variations of passages of Lorem Ipsum available
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- end why us section -->
+<!-- client section -->
+
+<section class="client_section layout_padding-bottom">
+    <div class="container">
+        <div class="heading_container heading_center">
+            <h2>
+                What Says Our Customers
+            </h2>
+        </div>
+    </div>
+    <div class="client_container ">
+        <div id="carouselExample2Controls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">                  
+                    @foreach (var item in ViewBag.lstDanhGia)
+                    {
+                        <div class="carousel-item @(ViewBag.IdActiveDanhGia == item.Id?"active":"")">
+                            <div class="container">
+                                <div class="box">
+                                    <div class="detail-box">
+                                        <p>
+                                            <i class="fa fa-quote-left" aria-hidden="true"></i>
+                                        </p>
+                                        <p>
+                                           @item.LoiDanhGia
+                                        </p>
+                                    </div>
+                                    <div class="client-id">
+                                        <div class="img-box">
+                                            <img src="~/admin/assets/images/users/@item.TaiKhoan.HinhAnh" style="width:70px;" alt="">
+                                        </div>
+                                        <div class="name">
+                                            <h5>
+                                                @item.TaiKhoan.HoVaTen
+                                            </h5>                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                       
+                    }                
+            </div>
+            <div class="carousel_btn-box">
+                <a class="carousel-control-prev" href="#carouselExample2Controls" role="button" data-slide="prev">
+                    <span>
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    </span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExample2Controls" role="button" data-slide="next">
+                    <span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end client section -->
+@section js {
+    <script src="~/js/jquery-3.4.1.min.js">
+
+    </script>
+<script src="~/js/bootstrap.js">
+
+    </script>
+<script src="~/js/custom.js">
+
+    </script>
+}

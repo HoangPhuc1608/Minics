@@ -1,0 +1,137 @@
+﻿@model PagedList.IPagedList<_0306191062_vohoangphuc.Areas.Admin.Models.HoaDon>
+@using PagedList.Mvc;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Họ tên
+            </th>
+            <th>
+                Ngày tạo HD
+            </th>
+            <th>
+                Địa chỉ giao hàng
+            </th>
+            <th>
+                SDT người nhận
+            </th>
+            <th>
+                Tổng tiền
+            </th>
+            <th>
+                Người giao
+            </th>
+            <th>
+                SDT người giao
+            </th>
+            <th>
+                Trạng thái
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaiKhoan.HoVaTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayTaoHoaDon)
+            </td>
+            <td style="text-wrap;">
+                @Html.DisplayFor(modelItem => item.DiaChiGiaoHang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoDienThoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TongTien)
+            </td>
+            <td style="text-wrap;">
+                @Html.DisplayFor(modelItem => item.TenNguoiGiaoHang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SDTNguoiGiao)
+            </td>
+            <td>
+                @if (item.TrangThai == 0)
+                {
+                    <b class="btn btn-outline-danger btn-fw" style="width:120;">Chờ xác nhận</b>
+                }
+                else if (item.TrangThai == 1)
+                {
+                    <b class="btn btn-outline-primary btn-fw" style="width: 120;">Đã xác nhận</b>
+                }
+                else if (item.TrangThai == 2)
+                {
+                    <b class="btn btn-outline-info btn-fw" style="width: 120;">Đang chuẩn bị hàng</b>
+                }
+                else if (item.TrangThai == 3)
+                {
+                    <b class="btn btn-outline-warning btn-fw" style="width: 120;">Đang giao</b>
+                }
+                else if (item.TrangThai == 4)
+                {
+                    <b class="btn btn-outline-success btn-fw" style="width: 120;">Giao thành công</b>
+                }
+            </td>
+            <td>
+                @if (item.TrangThai == 0)
+                {
+                    <a class="btn btn-success btn-rounded" style="width: 120;" asp-action="Edit" asp-route-id="@item.Id">Xác nhận</a>
+                }
+                else if (item.TrangThai == 1)
+                {
+                    <a class="btn btn-success btn-rounded" style="width: 120;" asp-action="Edit" asp-route-id="@item.Id">Chuẩn bị hàng</a>
+                }
+                else if (item.TrangThai == 2)
+                {
+                    <a class="btn btn-success btn-rounded" style="width: 120;" asp-action="GiaoHang" asp-route-id="@item.Id">Giao hàng</a>
+                }
+                else if (item.TrangThai == 3)
+                {
+                    <a class="btn btn-success btn-rounded" style="width: 100;" asp-action="Edit" asp-route-id="@item.Id">Thành công</a>
+                }
+                else if (item.TrangThai == 4)
+                {
+
+                }
+
+                <a class="btn btn-light btn-rounded" style="width: 50;" asp-controller="ChiTietHoaDons" asp-action="Index" asp-route-id="@item.Id">CT</a>
+                @if (item.TrangThai != 4)
+                {
+                    <a class="btn btn-danger btn-rounded" style="width: 60;" asp-action="HuyDon" asp-route-id="@item.Id">Hủy</a>
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+@*Start: Phân trang*@
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        @*<li class="page-item disabled">
+              <a class="page-link" href="#" tabindex="-1">Previous</a>
+            </li>*@
+        @for (int i = 0; i < Model.PageCount; i++)
+        {
+            <li class="page-item @(Model.PageNumber == i + 1?"active":"")">
+                <a class="page-link" asp-action="Index" asp-route-page="@(i+1)">@(i+1) <span class="sr-only">(current)</span></a>
+            </li>
+
+        }
+
+        @*<li class="page-item">
+              <a class="page-link" href="#">Next</a>
+            </li>*@
+    </ul>
+</nav>
+@*End: Phân trang*@
