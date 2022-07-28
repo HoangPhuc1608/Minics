@@ -20,6 +20,7 @@
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 <span>
                                     Call : +01 123455678990
+                                    @RenderSection("test", required: false)
                                 </span>
                             </a>
                             <a href="">
@@ -73,7 +74,7 @@
             <div class="header_bottom">
                 <div class="container-fluid">
                     <nav class="navbar navbar-expand-lg custom_nav-container ">
-                        <a class="navbar-brand" href="index.html">
+                        <a class="navbar-brand" asp-controller="Home" asp-action="Index">
                             <span>
                                 Minics
                             </span>

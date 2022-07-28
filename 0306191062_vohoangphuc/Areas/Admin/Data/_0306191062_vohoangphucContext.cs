@@ -33,5 +33,6 @@ namespace _0306191062_vohoangphuc.Data
         public DbSet<_0306191062_vohoangphuc.Areas.Admin.Models.DanhGiaKhachHang> DanhGiaKhachHangs { get; set; }
 
         public DbSet<_0306191062_vohoangphuc.Areas.Admin.Models.BinhLuan> BinhLuan { get; set; }
+
     }
 }

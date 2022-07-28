@@ -370,9 +370,7 @@ namespace _0306191062_vohoangphuc.Areas.Admin.Controllers
                 })).Distinct().ToList();
             
             ViewBag.khTongTienNhieuNhat = khMuaSP;
-            
 
-            
             var lstSPBanChay = _context.ChiTietHoaDons.Include(p => p.SanPham).ToList().
                             GroupBy(p => p.SanPhamId).
                             SelectMany(sp => sp.Select(p => new 
@@ -399,8 +397,10 @@ namespace _0306191062_vohoangphuc.Areas.Admin.Controllers
                 Where(p => p.NgayTaoHoaDon >= startD && p.NgayTaoHoaDon <= end).
                 OrderByDescending(p=> p.NgayTaoHoaDon).ToList();
             ViewBag.total = lstHD.Sum(p => p.TongTien);
+
+
             
-            
+
             return View(lstHD);
         }
     }
